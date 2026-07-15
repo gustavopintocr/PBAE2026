@@ -242,6 +242,25 @@
     text-decoration:none;
   }
   .const-card .btn:hover{ background:#2C5468; }
+  .const-card .btn-group{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+  }
+  .const-card .btn-outline{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:#fff;
+    color:var(--teal);
+    border:1.5px solid var(--teal);
+    font-size:13px;
+    font-weight:600;
+    padding:7.5px 16px;
+    border-radius:10px;
+    text-decoration:none;
+  }
+  .const-card .btn-outline:hover{ background:var(--teal); color:#fff; }
   .const-card .signer{
     margin-top:14px;
     font-size:11.5px;
@@ -530,6 +549,32 @@
     font-weight:600;
   }
 
+  .company-toggle{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin:0 0 28px;
+  }
+  .company-toggle button{
+    font-family:'Poppins',sans-serif;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.4px;
+    padding:9px 22px;
+    border-radius:999px;
+    border:1.5px solid #D9DED6;
+    background:#fff;
+    color:var(--navy);
+    cursor:pointer;
+    transition:all .18s ease;
+  }
+  .company-toggle button:hover{ border-color:var(--teal); }
+  .company-toggle button.active{
+    background:var(--navy);
+    border-color:var(--navy);
+    color:#fff;
+  }
+
   footer{
     width:100%;
     text-align:center;
@@ -580,7 +625,10 @@
           <li>Presentó en 2026 los documentos finales para la evaluación del galardón correspondiente al año 2025; el proceso concluye en agosto 2026.</li>
           <li>Queda inscrita para optar por el galardón 2026; los documentos finales deberán presentarse durante el primer semestre de 2027.</li>
         </ul>
-        <a class="btn" id="btnAlbasa" href="#" target="_blank" rel="noopener">Ver constancia PDF ↗</a>
+        <div class="btn-group">
+          <a class="btn" id="btnAlbasa" href="#" target="_blank" rel="noopener">Ver constancia PDF ↗</a>
+          <a class="btn-outline" href="https://docs.google.com/spreadsheets/d/176MPHe1AVnW7brRVP8lW2Fc_0j-bPuDW/edit" target="_blank" rel="noopener">Ver Controles PBAE (Sheets) ↗</a>
+        </div>
         <div class="signer">Firmado digitalmente por Esteban Gutiérrez Madrigal — Coordinador Equipo Técnico, Categoría Cambio Climático-PBAE.</div>
       </div>
       <div class="const-card">
@@ -591,7 +639,10 @@
           <li>Presentó en 2026 los documentos finales para la evaluación del galardón correspondiente al año 2025; el proceso concluye en agosto 2026.</li>
           <li>Queda inscrita para optar por el galardón 2026; los documentos finales deberán presentarse durante el primer semestre de 2027.</li>
         </ul>
-        <a class="btn" id="btnAlgrasa" href="#" target="_blank" rel="noopener">Ver constancia PDF ↗</a>
+        <div class="btn-group">
+          <a class="btn" id="btnAlgrasa" href="#" target="_blank" rel="noopener">Ver constancia PDF ↗</a>
+          <a class="btn-outline" href="https://docs.google.com/spreadsheets/d/1FiVVIedJ2KhsY0X30iiLvzugJt8_jxno/edit" target="_blank" rel="noopener">Ver Controles PBAE (Sheets) ↗</a>
+        </div>
         <div class="signer">Firmado por Esteban Gutiérrez Madrigal — Coordinador Equipo Técnico, Categoría Cambio Climático-PBAE.</div>
       </div>
     </div>
@@ -648,6 +699,11 @@
     <div class="block-head">
       <span class="eyebrow">Informe final 2026</span>
       <h2>Parámetros del PBAE</h2>
+    </div>
+
+    <div class="company-toggle" role="tablist" aria-label="Seleccionar empresa">
+      <button type="button" data-company="ALBASA" class="active">ALBASA</button>
+      <button type="button" data-company="ALGRASA">ALGRASA</button>
     </div>
 
     <section id="wheel-view">
@@ -730,7 +786,7 @@ const PDF_ALGRASA = "data:application/pdf;base64,JVBERi0xLjcNCiW1tbW1DQoxIDAgb2J
 document.getElementById("btnAlbasa").href = PDF_ALBASA;
 document.getElementById("btnAlgrasa").href = PDF_ALGRASA;
 
-const ESTRELLA_NARANJA = {
+const ESTRELLA_NARANJA_ALBASA = {
   num:"★", title:"Estrella Naranja", icon:"🌟", color:"orange",
   acciones:[
     {t:"Jardín de Polinizadores", d:"Instalación de un jardín con mínimo 30 plantas nativas para abejas, mariposas y colibríes; meta de al menos 1 jardín durante el programa.",
@@ -744,7 +800,7 @@ const ESTRELLA_NARANJA = {
 /* ---------------- PARÁMETROS ---------------- */
 function ln(label,url){ return {label,url}; }
 
-const PARAMS = [
+const PARAMS_ALBASA = [
   {
     num:"2", title:"Combustibles Fósiles", icon:"⛽", color:"teal",
     acciones:[
@@ -836,7 +892,7 @@ const PARAMS = [
   {
     num:"9", title:"Adaptación al Cambio Climático", icon:"🌎", color:"gold",
     acciones:[
-      {t:"Política de Uso de Transporte Público", d:"Promoción del transporte colectivo entre colaboradores para reducir emisiones.",
+      {t:"Política de Movilidad Sostenible", d:"Promoción del transporte colectivo entre colaboradores para reducir emisiones.",
        links:[ln("Ver infografía","https://drive.google.com/file/d/1fLANgH-GNL4Vi2oSw9NUoAiKzB4oI1IH/view"), ln("Ver bitácora","https://drive.google.com/file/d/1Zz9DOcupbhfQAXJLT4pXoOvyVlPi5hOT/view")]},
       {t:"Política de Car Pooling", d:"Vehículo compartido entre el personal administrativo para reducir emisiones.",
        links:[ln("Ver infografía","https://drive.google.com/file/d/1tGZ3jktRJiiXKuWMMfa8vXOgBK7EySWK/view"), ln("Ver bitácora","https://drive.google.com/file/d/15uclGeaq0YjKQK_5IbSfijd-Jhp3EpUW/view")]}
@@ -858,9 +914,140 @@ const PARAMS = [
   }
 ];
 
+const PARAMS_ALGRASA = [
+  {
+    num:"2", title:"Combustibles Fósiles", icon:"⛽", color:"teal",
+    acciones:[
+      {t:"Renovación de flota 2026–2027", d:"Compra de maquinaria con inyección electrónica y Modos ECO, reduciendo consumo de diésel y emisiones de CO₂.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1pMU6Hv0yOmunc69tTIX8QcirJNWi3zk0/view")]}
+    ],
+    actividades:[
+      {t:"Dominando la Eficiencia: Tecnología Common Rail y Modos ECO", d:"Capacitación sobre el sistema Common Rail y el uso correcto de los Modos ECO / Normal / Power desde cabina.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1KJcbipsEc2SgnAnqpCyjMNlphDe-shE3/view"), ln("Ver infografía","https://drive.google.com/file/d/1F2JFzkQIi7P7IyCO8OBZpj38VaeBhaCU/view"), ln("Ver material adicional","https://drive.google.com/file/d/1yD2wWjYpBq1KI4fyk8faIB8FrGCihakQ/view")]},
+      {t:"Mantenimiento Preventivo: cuidamos la maquinaria, aseguramos el rendimiento", d:"Inspecciones y cambios programados cada 250 h, 500 h y de forma anual, para minimizar consumo y emisiones.",
+       links:[ln("Ver infografía","https://drive.google.com/file/d/1LiI2VDjBo48--JG-v1udM8ElH3AKm1QN/view")]}
+    ]
+  },
+  {
+    num:"3", title:"Agua", icon:"💧", color:"orange",
+    acciones:[
+      {t:"Recolección de agua de lluvia", d:"Campaña de captación pluvial para reducir el consumo de agua potable en las instalaciones.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/18Tk7-mUYvcV-6NSL4Ot5jR1c3lwr-Qo5/view"), ln("Ver evidencia adicional","https://drive.google.com/file/d/1mxtEQW7OoQ97oFZwaYPgP6etYvg3Ttiv/view")]},
+      {t:"Cuidemos el Agua", d:"Campaña interna de sensibilización para el uso responsable del agua en las instalaciones.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1UwPUBVO5B6QH2WjwhdNW88H7Fqwk7D_L/view")]}
+    ],
+    actividades:[
+      {t:"Guardianes del Agua", d:"Jornada de sensibilización sobre el uso responsable del recurso hídrico.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1rCC7Png95zcshRql_xeyWepN_oW4wxUw/view")]},
+      {t:"Ingeniería de Materiales y Huella Hídrica", d:"Uso de aditivos reductores de agua en procesos constructivos.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1q01u5PlmIaLbRuVB4d7VbiE7oqzOmDLy/view")]}
+    ]
+  },
+  {
+    num:"4", title:"Tratamiento de Aguas", icon:"🚰", color:"gold",
+    acciones:[
+      {t:"Registro del tanque séptico", d:"Bitácora trimestral de mantenimiento y limpieza del sistema séptico de ALGRASA.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1HJwDSVvc-cnwMo2cL7vV8vqQ_nEtcwOh/view")]},
+      {t:"Rotulación de servicios sanitarios", d:"Señalización de buenas prácticas de uso en los servicios sanitarios.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1H8zhxyK5GyKLj1mnrL5POcq9v1m33NAr/view")]}
+    ],
+    actividades:[
+      {t:"Manual operacional de sistemas sépticos", d:"Protocolo interno de operación y mantenimiento de los sistemas de tratamiento.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1QFv46L9UgvmUDZPIRGxBz6dOoslFMaWB/view")]}
+    ]
+  },
+  {
+    num:"5", title:"Energía Eléctrica", icon:"⚡", color:"skyblue",
+    acciones:[
+      {t:"Programa \u201cÚltimo en Salir\u201d", d:"Protocolo de apagado de equipos e iluminación al finalizar la jornada laboral.",
+       links:[ln("Ver infografía","https://drive.google.com/file/d/1nlxwuFpIVMfAcMOjU0lZ5dil1LF7wX7a/view"), ln("Ver bitácora","https://drive.google.com/file/d/1vkOETZ1j8CvW728-oNc31MEZrP-7OgPc/view")]}
+    ],
+    actividades:[
+      {t:"Día sin consumo innecesario", d:"Jornada mensual de sensibilización sobre ahorro de energía eléctrica.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1BJ7HcLCoFxct34qS8wNIpwH9Jr-cbjFH/view")]},
+      {t:"Consumo Inteligente de Electricidad", d:"El costo invisible de lo innecesario y cómo transformarlo en eficiencia: material de capacitación para colaboradores.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1qEk3jfuiRJFXjfDuGpGWA8ZvJSGP8aMu/view")]}
+    ]
+  },
+  {
+    num:"6", title:"Gestión de Residuos", icon:"♻️", color:"leaf",
+    acciones:[
+      {t:"Tapitas por el Ambiente", d:"Recolección de tapas plásticas con fines de reciclaje y reconocimiento al colaborador más participativo.",
+       links:[ln("Ver infografía","https://drive.google.com/file/d/1ersxz4GAjMz0pk78BZnw3YVxGLmErCND/view"), ln("Ver plan de campaña","https://drive.google.com/file/d/1Go5Ty5RH9m3ZzGHIB6_J9-ujAIf8qRHW/view")]}
+    ],
+    actividades:[
+      {t:"Mural Ecológico", d:"Intervención visual institucional sobre separación de residuos.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/120Xn03fLNnKRLOgVl7xt0aO0Va-0ne1V/view")]},
+      {t:"Huerta Comunitaria", d:"Aprovechamiento de residuos orgánicos para compost y siembra colectiva.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1NH6Vsiz9ON9Y61cUeE79-BwlSOOn1kur/view")]},
+      {t:"Planos para un futuro más verde", d:"Planeación de espacios verdes y aprovechamiento de residuos dentro de las instalaciones.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1d1H7pBtLDTBwtmCi57tWmcyvIK_rGN49/view")]}
+    ]
+  },
+  {
+    num:"7", title:"Gases Refrigerantes", icon:"❄️", color:"teal",
+    acciones:[
+      {t:"Mantenimiento de aires acondicionados", d:"Revisión y control de fugas de gases refrigerantes en los equipos de climatización.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1XzHQSoDJXdGLfgHjNXz4X64rVyq3XBwt/view")]}
+    ],
+    actividades:[
+      {t:"Gestión Responsable de Gases Refrigerantes", d:"Material de capacitación sobre manejo, control de fugas y buenas prácticas con gases refrigerantes.",
+       links:[ln("Ver PDF","https://drive.google.com/file/d/1ogery6OU7LqBqFACpz8VX9Vt4XoRJ3eN/view")]}
+    ]
+  },
+  {
+    num:"8", title:"Compras Sostenibles", icon:"🛒", color:"orange",
+    acciones:[
+      {t:"Política de Compras Sostenibles", d:"Criterios ambientales para la selección de proveedores e insumos.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1BPUZTPxtUDGhY9rMHVxY3KmxjPPYrZrA/view")]}
+    ],
+    actividades:[]
+  },
+  {
+    num:"9", title:"Adaptación al Cambio Climático", icon:"🌎", color:"gold",
+    acciones:[
+      {t:"Política de Movilidad Sostenible", d:"Promoción del transporte colectivo entre colaboradores para reducir emisiones.",
+       links:[ln("Ver infografía","https://drive.google.com/file/d/100Bmy0STO5Tv3QvMRoJEjfcT8ZcBUaAN/view"), ln("Ver bitácora","https://drive.google.com/file/d/1z679XhmIX7fwKZzwwDVhj9i44-ZJ_JYK/view")]},
+      {t:"Política de Car Pooling", d:"Vehículo compartido entre el personal administrativo para reducir emisiones.",
+       links:[ln("Ver infografía","https://drive.google.com/file/d/13qmyWG32ds-UoauGLO8SRa2VxOayPDXw/view"), ln("Ver bitácora","https://drive.google.com/file/d/1hhCahJTJ9g7MFZeSROnePRfKNJUyhS2i/view")]}
+    ],
+    actividades:[
+      {t:"Afiches sobre incendios forestales", d:"Entrega de material informativo de prevención en temporada seca.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1vOhmulLMYgx6XH6ht9ypHSrdEZVgTfuD/view")]}
+    ]
+  },
+  {
+    num:"10", title:"Compensación Ambiental", icon:"🌳", color:"skyblue",
+    acciones:[
+      {t:"Siembra de árboles \u201cGuardianes del Aire\u201d", d:"Jornada institucional de reforestación con colaboradores.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/1MQ67ZI3Bw1f2K82bbesAYrZR_-nTGviH/view")]}
+    ],
+    actividades:[
+      {t:"Campaña de limpieza", d:"Jornada de recolección de residuos en los alrededores de las instalaciones.",
+       links:[ln("Ver evidencia","https://drive.google.com/file/d/12yHVRjmZCPp4ClsF_xK2DuT_O32X152Q/view")]}
+    ]
+  }
+];
+
+const ESTRELLA_NARANJA_ALGRASA = {
+  num:"★", title:"Estrella Naranja", icon:"🌟", color:"orange",
+  acciones:[
+    {t:"Jardín de Polinizadores", d:"Instalación de un jardín con mínimo 30 plantas nativas para abejas, mariposas y colibríes; meta de al menos 1 jardín durante el programa.",
+     links:[ln("Ver evidencia","https://drive.google.com/file/d/1qN80QjXmXe1OeGmeMnyn-MC8h2IkZUbh/view")]},
+    {t:"Comederos de Aves", d:"Instalación de al menos 5 comederos y bebederos para aves en áreas verdes, con monitoreo mensual de especies visitantes.",
+     links:[ln("Ver evidencia","https://drive.google.com/file/d/1iZ19NVgQLcqdpyJDNGSStxbUZHwoOz4r/view")]}
+  ],
+  actividades:[]
+};
+
+/* ---------------- SELECTOR DE EMPRESA ---------------- */
+let currentCompany = "ALBASA";
+function getParams(){ return currentCompany === "ALBASA" ? PARAMS_ALBASA : PARAMS_ALGRASA; }
+function getEstrella(){ return currentCompany === "ALBASA" ? ESTRELLA_NARANJA_ALBASA : ESTRELLA_NARANJA_ALGRASA; }
+
 /* ---------------- BUILD WHEEL ---------------- */
 const cx = 300, cy = 300, rOuter = 300, rInner = 118;
-const n = PARAMS.length;
+const n = PARAMS_ALBASA.length;
 const anglePer = 360 / n;
 const wedgesG = document.getElementById("wedges");
 const labelsWrap = document.getElementById("labels");
@@ -877,7 +1064,7 @@ function wedgePath(a0, a1){
           L ${p3.x} ${p3.y} A ${rInner} ${rInner} 0 ${large} 0 ${p4.x} ${p4.y} Z`;
 }
 
-PARAMS.forEach((p, i) => {
+PARAMS_ALBASA.forEach((p, i) => {
   const a0 = i * anglePer, a1 = a0 + anglePer, mid = (a0 + a1) / 2;
 
   const path = document.createElementNS("http://www.w3.org/2000/svg","path");
@@ -887,8 +1074,8 @@ PARAMS.forEach((p, i) => {
   path.setAttribute("tabindex","0");
   path.setAttribute("role","button");
   path.setAttribute("aria-label", `Parámetro ${p.num}: ${p.title}`);
-  path.addEventListener("click", () => showDetail(p));
-  path.addEventListener("keydown", (e) => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); showDetail(p);} });
+  path.addEventListener("click", () => showDetail(getParams()[i]));
+  path.addEventListener("keydown", (e) => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); showDetail(getParams()[i]);} });
   wedgesG.appendChild(path);
 
   const labelR = (rOuter + rInner) / 2;
@@ -919,7 +1106,8 @@ function showDetail(p){
   const color = COLORS[p.color];
   document.getElementById("detailIcon").style.background = color + "22";
   document.getElementById("detailIcon").textContent = p.icon;
-  document.getElementById("detailBadge").textContent = p.num === "★" ? "Distinción especial · PBAE 2026" : `Parámetro N°${p.num} · PBAE 2026`;
+  document.getElementById("detailBadge").textContent = (p.num === "★" ? "Distinción especial" : `Parámetro N°${p.num}`) + ` · ${currentCompany} · PBAE 2026`;
+  document.getElementById("detailBadge").dataset.num = p.num;
   document.getElementById("detailTitle").textContent = p.title;
 
   const accionesList = document.getElementById("accionesList");
@@ -942,20 +1130,33 @@ function showWheel(){
 backBtn.addEventListener("click", showWheel);
 
 const centerStar = document.getElementById("centerStar");
-centerStar.addEventListener("click", () => showDetail(ESTRELLA_NARANJA));
-centerStar.addEventListener("keydown", (e) => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); showDetail(ESTRELLA_NARANJA);} });
+centerStar.addEventListener("click", () => showDetail(getEstrella()));
+centerStar.addEventListener("keydown", (e) => { if(e.key==="Enter"||e.key===" "){ e.preventDefault(); showDetail(getEstrella());} });
+
+/* ---------------- TOGGLE EMPRESA ---------------- */
+const companyBtns = document.querySelectorAll(".company-toggle button");
+companyBtns.forEach(btn => {
+  btn.addEventListener("click", () => {
+    currentCompany = btn.dataset.company;
+    companyBtns.forEach(b => b.classList.toggle("active", b === btn));
+    if (detailView.classList.contains("active")) {
+      const openNum = document.getElementById("detailBadge").dataset.num;
+      const source = openNum === "★" ? getEstrella() : getParams().find(x => x.num === openNum);
+      if (source) showDetail(source);
+    }
+  });
+});
 
 /* ---------------- CRONOGRAMA ---------------- */
 const CRONO = [
   ["Julio", "Llenado del archivo de controles", "Actividad: apertura y actualización mensual del archivo digital de controles PBAE.", "Requerimientos inmediatos"],
   ["Julio", "Comederos de Aves", "Acción: instalación de al menos 5 comederos y bebederos en áreas verdes.", "Estrella Naranja"],
-  ["Julio", "Estañones de agua de lluvia", "Acción: instalación de estañones y arranque de la campaña de recolección pluvial.", "Parámetro 3 · Agua"],
   ["Julio", "Rotulación de servicios sanitarios", "Acción: señalización de buenas prácticas en los servicios sanitarios.", "Parámetro 4 · Tratamiento de Aguas"],
 
   ["Agosto", "Sanitarios de doble descarga", "Acción: sustitución de sanitarios por modelos de bajo consumo hídrico.", "Parámetro 3 · Agua"],
   ["Agosto", "Registro del tanque séptico", "Acción: inicio de la bitácora trimestral de mantenimiento y limpieza del sistema séptico.", "Parámetro 4 · Tratamiento de Aguas"],
   ["Agosto", "Programa \u201cÚltimo en Salir\u201d", "Acción: inicio del protocolo y de la bitácora mensual de apagado de equipos e iluminación.", "Parámetro 5 · Energía Eléctrica"],
-  ["Agosto", "Política de Uso de Transporte Público", "Acción: inicio de la bitácora mensual de seguimiento a la política.", "Parámetro 9 · Adaptación al Cambio Climático"],
+  ["Agosto", "Política de Movilidad Sostenible", "Acción: inicio de la bitácora mensual de seguimiento a la política.", "Parámetro 9 · Adaptación al Cambio Climático"],
   ["Agosto", "Política de Car Pooling", "Acción: inicio de la bitácora mensual de vehículo compartido.", "Parámetro 9 · Adaptación al Cambio Climático"],
   ["Agosto", "Mantenimiento de aires acondicionados", "Acción: inicio del control mensual de fugas de gases refrigerantes.", "Parámetro 7 · Gases Refrigerantes"],
   ["Agosto", "Tapitas por el Ambiente", "Acción: arranque de la recolección mensual de tapas plásticas según el plan de campaña.", "Parámetro 6 · Gestión de Residuos"],
@@ -970,6 +1171,7 @@ const CRONO = [
   ["Octubre", "Consumo Inteligente de Electricidad", "Capacitación: ahorro energético y eficiencia eléctrica.", "Parámetro 5 · Energía Eléctrica"],
   ["Octubre", "Gestión Responsable de Gases Refrigerantes", "Capacitación: manejo y control de fugas de gases refrigerantes.", "Parámetro 7 · Gases Refrigerantes"],
 
+  ["Noviembre", "Estañones de agua de lluvia", "Acción: instalación de estañones y arranque de la campaña de recolección pluvial.", "Parámetro 3 · Agua"],
   ["Noviembre", "Mural Ecológico", "Actividad: intervención visual institucional sobre separación de residuos.", "Parámetro 6 · Gestión de Residuos"],
   ["Noviembre", "Huerta Comunitaria", "Actividad: aprovechamiento de residuos orgánicos para compost y siembra colectiva.", "Parámetro 6 · Gestión de Residuos"],
   ["Noviembre", "Planos para un futuro más verde", "Actividad: planeación de espacios verdes dentro de las instalaciones.", "Parámetro 6 · Gestión de Residuos"],
